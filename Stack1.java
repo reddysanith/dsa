@@ -1,5 +1,5 @@
 import java.util.Stack;
-public class Rectangle{
+public class Stack1{
     public static void rectangle(int a[])
     {
       Stack<Integer> st=new Stack<>();
@@ -50,10 +50,9 @@ public class Rectangle{
         }
         else
         {
-            if(st.peek()==d)
-            {
-
-            }
+            if(st.peek()!=d)return false;
+            else if(st.peek()!=d)return false;
+            else if(st.peek()!=d)return false;
         }
     }
       }
