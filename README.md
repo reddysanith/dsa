@@ -1,1 +1,0 @@
-saripova anna classes
