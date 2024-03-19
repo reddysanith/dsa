@@ -34,6 +34,30 @@ public class Rectangle{
     }
     System.out.println(max);
     }
+    public static boolean brackets(String s)
+    {
+        Stack<Character> st=new Stack<>();
+      for(int i=0;i<s.length();i++)
+      {
+        char d=s.charAt(i);
+        if(d=='{'||d=='('||d=='[')
+        {
+          st.push(d);
+        }
+        else if(st.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            if(st.peek()==d)
+            {
+
+            }
+        }
+    }
+      }
+    }
     public static void main(String[] args) {
         int a[]={2,1,5,6};
         rectangle(a);
