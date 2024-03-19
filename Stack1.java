@@ -40,7 +40,7 @@ public class Stack1{
       for(int i=0;i<s.length();i++)
       {
         char d=s.charAt(i);
-        if(d=='{'||d=='('||d=='[')
+        if(d=='{'|d=='('||d=='[')
         {
           st.push(d);
         }
@@ -50,16 +50,24 @@ public class Stack1{
         }
         else
         {
-            if(st.peek()!=d)return false;
-            else if(st.peek()!=d)return false;
-            else if(st.peek()!=d)return false;
+            if(d=='}') d='{';
+            else if(d==']') d='[';
+            else d='(';
+            if(d!=st.peek())return false;            
+            else{
+              st.pop();
+            }
         }
     }
+    if(st.isEmpty())return true;
+    else return false;
       }
-    }
+    
     public static void main(String[] args) {
-        int a[]={2,1,5,6};
-        rectangle(a);
+        //int a[]={2,1,5,6};
+        //rectangle(a);
+        String s="{}()[]";
+       System.out.println(brackets(s));
         
     }
 }
