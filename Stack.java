@@ -62,6 +62,19 @@ public class Stack1{
     if(st.isEmpty())return true;
     else return false;
       }
+      public static void prefix()
+      {
+        for(int i=a.length-1;i>=0;i--)
+        {
+        while(!st.isEmpty()&&a[i]<a[st.peek()])
+        {
+           st.pop();
+        } 
+        if(st.isEmpty())nsR[i]+=a.length;
+        else nsR[i]+=st.peek();
+        st.push(i);
+      }
+      }
     
     public static void main(String[] args) {
         //int a[]={2,1,5,6};
