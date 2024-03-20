@@ -79,6 +79,7 @@ public class Stack1{
     public static void main(String[] args) {
         //int a[]={2,1,5,6};
         //rectangle(a);
+        //prefix();
         String s="{}()[]";
        System.out.println(brackets(s));
         
