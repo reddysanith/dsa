@@ -126,10 +126,31 @@ public static void runningsum() {
         }
         System.out.println(res);
     }
+    static int out=0;
+    public static int cow(int a[],int i,int count,int sum)
+    {
+        
+        if(i==a.length-1)
+        {
+            return out;
+        }
+        if(sum%7==0)
+        {
+            if(count>out)
+            {
+                out=count;
+            }
+        }
+        cow(a,i+1,count+1,sum+a[i]);
+        cow(a,i+1,count,sum);
+        return out;
+    }
     public static void main(String[] args) {
-        box();
+        //box();
         //runningsum();
         //farmer();
+        int a[]={7,3,5,1,6,2,14,10};
+       System.out.println(cow(a,0,0,0));
     }
 
 
