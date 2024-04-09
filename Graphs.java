@@ -45,6 +45,96 @@ public class Graphs {
        // return;
        }
     }
+      
+    static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
+        // code here
+         int vi[]=new int[V+1];
+         int count=0;
+         ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
+         for(int i=0;i<V;i++)
+         {
+             graph.add(new ArrayList<>());
+         }
+         for(int i=0;i<V;i++)
+         {
+             for(int j=0;j<adj.get(i).size();j++)
+             {
+                 if(adj.get(i).get(j)==1)
+                 {
+                     graph.get(i).add(j);
+                 }
+             }
+         }
+        
+        for(int j=0;j<V;j++)
+        {
+    
+               if(vi[j]!=1)
+               {
+               count++;
+               dfs(graph,j,vi);
+               }
+        }
+        return count;
+    }
+}
+class Pair{
+    int first;
+    int second;
+    Pair(int first,int second)
+    {
+        this.first=first;
+        this.second=second;
+    }
+}
+class Solution {
+    public static void bfs(char[][] grid,int r,int c,int[][] vi)
+    {
+        Queue<Pair> q=new LinkedList<Pair>();
+        int n=grid.length;
+        int m=grid[0].length;
+        q.add(new Pair(r,c));
+        vi[r][c]=1;
+        while(!q.isEmpty())
+        {
+           int lr=q.peek().first;
+           int lc=q.peek().second;
+            q.remove();
+            for(int delr=-1;delr<=1;delr++)
+            {
+                for(int delc=-1;delc<=1;delc++)
+                {
+                   int nr=lr+delr;
+                   int cr=lc+delc;
+                    if(nr>=0 && nr<n && cr>=0 && cr<m&& vi[nr][cr]==0&& grid[nr][cr]=='1')
+                    {
+                        vi[nr][cr]=1;
+                        q.add(new Pair(nr,cr));
+                    }
+                }
+            }
+        }
+    }
+    public int numIslands(char[][] grid) {
+        int n=grid.length;
+        int m=grid[0].length;
+        int vi[][]=new int[n][m];
+        int count=0;
+        for(int r=0;r<n;r++)
+        {
+            for(int c=0;c<m;c++)
+            {
+                if(vi[r][c]==0&&grid[r][c]=='1')
+                {
+                count++;
+                bfs(grid,r,c,vi);
+                }
+            }
+        }
+        return count;
+        
+    }
+}
     public static void main(String args[])
     {
         Scanner s=new Scanner(System.in);
