@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Sliding {
-    public static void mirrorslide(int a[],int k)
+    public static void mirrorslide(int a[])
         {
           int left=0;
           int right=0;
@@ -11,13 +11,15 @@ public class Sliding {
           while(right<a.length)
           {
             sum+=a[right];
-            if(right-left+1==k)
+            if(sum%7==0)
             {
-                maxsum=Math.max(sum,maxsum);
+                maxsum=Math.max(right-left+1,maxsum);
                 sum-=a[left];
                 left++;
             }
             right++;
+            
+
              
           }
           System.out.println(maxsum);
@@ -104,16 +106,16 @@ public class Sliding {
         }
     public static void main(String args[])
     {
-        int a[]={1,-2,-3,30,-5,6,-7,8};
+        int a[]={7,3,5,1,6,2,14,10};
         int k=3;
         String s1="act";
         String s2="cam";
         String s3="actcattaccta";
         String s4="act";
-       // mirrorslide(a,k);
+       mirrorslide(a);
        // firstneg(a,k);
        // anagram(s1,s2);
-        isanagram1(s3,s4);
+        //isanagram1(s3,s4);
 
     }
     

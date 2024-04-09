@@ -27,17 +27,20 @@ public class Graphs {
         }
         }
     }
-   // public static boolean vi[]=new boolean[]
-    public static void dfs( ArrayList<ArrayList<Integer>> graph,int n)
+   
+    public static void dfs( ArrayList<ArrayList<Integer>> graph,int n,int visited[])
     {
-        boolean visited[]=new boolean[graph.size()];
+        // int visited[]=new int[graph.size()];
+        if(visited[n]!=1)
+        {
        System.out.print(n+" ");
-       visited[n]=true;
+        }
+       visited[n]=1;
        for(int i=0;i<graph.get(n).size();i++)
        {
-        if(!visited[graph.get(n).get(i)])
+        if(visited[graph.get(n).get(i)]!=1)
         {
-            dfs(graph,graph.get(n).get(i));
+            dfs(graph,graph.get(n).get(i),visited);
         }
        // return;
        }
@@ -60,8 +63,11 @@ public class Graphs {
         }
         boolean visited[]=new boolean[n];
         print(graph);
+        //public static boolean visited1[]=new boolean[graph.size()];
         bfs(graph,visited,n);
         System.out.println();
-        dfs(graph,0);
+        int visited1[]=new int[graph.size()];
+
+        dfs(graph,0,visited1);
     }
 }

@@ -126,33 +126,81 @@ public static void runningsum() {
         }
         System.out.println(res);
     }
-   static int out=0;
-    public static int cow(int a[],int i,int count,int sum)
+   
+    public static void cow(int a[])
     {
         
-        if(i==a.length-1)
-        {    
-            return out;
-        }
-        if(sum%7==0)
+        int p[]=new int[a.length];
+        p[0]=a[0]%7;
+        for(int i=1;i<a.length;i++)
         {
-
-            if(count>out)
-            {
-                out=count;
-            }
-            cow(a,i+1,count,sum);
-
+           p[i]=(p[i-1]+a[i])%7;
         }
-       cow(a,i+1,count+1,sum+a[i]);
-        return out;
+        int right=0;
+        int left=a.length-1;
+        int max=0;
+        while(right<=left)
+        {
+          if(p[right]==p[left])
+          {
+            max=Math.max(max,left-right);
+          }
+          right++;
+          if(right>left&&left>=0)
+          {
+            right=0;
+            left--;
+          }
+        }
+        System.out.println(max);
+    }
+    public static void plusminus(int sum,int n,int s,int i,Queue<Integer> q)
+    {    int z=0;
+        if(i>n)
+        {
+            i=0;
+            if(sum==s)
+            {
+              for(int j=1;j<=9;i++)
+              {
+                 System.out.print(j);
+                 if(q.remove()==1)
+                 {
+                 System.out.print("+");
+                 }
+                 else{
+                    System.out.println("-");
+                 }
+                 System.out.print(j+1);
+              }
+              z=1;
+            }
+            return;
+        }
+        if(z==0)
+        {
+          //  System.out.println(q);
+        q.add(1);
+        plusminus(sum+i,n,s,i+1,q);
+        //q.remove();
+        }
+        if(z==0)
+        {
+          //  System.out.println(q);
+        q.add(0);
+        plusminus(sum-i,n,s,i+1,q);
+        }
+
     }
     public static void main(String[] args) {
         //box();
         //runningsum();
         //farmer();
         int a[]={7,3,5,1,6,2,14,10};
-       System.out.println(cow(a,0,0,0));
+        Queue<Integer> q=new LinkedList<>();
+
+        plusminus(0,9,5,1,q);
+       //cow(a);
     }
 
 
