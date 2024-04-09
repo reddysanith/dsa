@@ -135,6 +135,63 @@ class Solution {
         
     }
 }
+class Pair{
+    int first;
+    int second;
+    Pair(int first,int second)
+    {
+        this.first=first;
+        this.second=second;
+    }
+}
+class Solution
+{
+    public static void bfs(int[][] grid,int r,int c,int[][] vi,int p)
+    {
+        Queue<Pair> q=new LinkedList<Pair>();
+        int n=grid.length;
+        int m=grid[0].length;
+        q.add(new Pair(r,c));
+        vi[r][c]=1;
+        while(!q.isEmpty())
+        {
+           int lr=q.peek().first;
+           int lc=q.peek().second;
+            q.remove();
+            for(int delr=-1;delr<=1;delr++)
+            {
+                for(int delc=-1;delc<=1;delc++)
+                {
+                   int nr=lr+delr;
+                   int cr=lc+delc;
+                    if(nr>=0 && nr<n && cr>=0 && cr<m&& vi[nr][cr]==0&& grid[nr][cr]==1)
+                    {
+                        vi[nr][cr]=1;
+                        grid[nr][cr]=p;
+                        q.add(new Pair(nr,cr));
+                    }
+                }
+            }
+        }
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor)
+    {
+         int n=image.length;
+        int m=image[0].length;
+        int vi[][]=new int[n][m];
+        int count=0;
+        if(image[sr][sc]==1)
+        {
+            image[sr][sc]=2;
+        }
+    
+                bfs(image,sr,sc,vi,newColor);
+                
+        return image;
+
+        
+    }
+}
     public static void main(String args[])
     {
         Scanner s=new Scanner(System.in);
