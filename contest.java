@@ -154,52 +154,51 @@ public static void runningsum() {
         }
         System.out.println(max);
     }
-    public static void plusminus(int sum,int n,int s,int i,Queue<Integer> q)
-    {    int z=0;
-        if(i>n)
-        {
-            i=0;
-            if(sum==s)
-            {
-              for(int j=1;j<=9;i++)
-              {
-                 System.out.print(j);
-                 if(q.remove()==1)
-                 {
-                 System.out.print("+");
-                 }
-                 else{
-                    System.out.println("-");
-                 }
-                 System.out.print(j+1);
-              }
-              z=1;
-            }
-            return;
-        }
-        if(z==0)
-        {
-          //  System.out.println(q);
-        q.add(1);
-        plusminus(sum+i,n,s,i+1,q);
-        //q.remove();
-        }
-        if(z==0)
-        {
-          //  System.out.println(q);
-        q.add(0);
-        plusminus(sum-i,n,s,i+1,q);
+
+    
+static String result="";
+    public static void plusminus(int n,int s) {
+        
+        int a[]=new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            a[i] = i + 1;
         }
 
+        if (!correct(0, 0, "",n,s,a)) {
+            System.out.println("Impossible");
+        } else {
+            System.out.println(result);
+        }
     }
+
+    static boolean correct(int i, int currSum, String final1,int n,int s,int a[]) {
+        if (i == n) {
+            if (currSum == s) {
+                result = final1;
+                return true;
+            }
+            return false;
+        }
+        if (correct(i+ 1, currSum + a[i], final1 + "+" + a[i],n,s,a)) {
+            return true;
+        }
+        if (correct(i+ 1, currSum - a[i], final1 + "-" + a[i],n,s,a)) {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public static void main(String[] args) {
         //box();
         //runningsum();
         //farmer();
         int a[]={7,3,5,1,6,2,14,10};
         Queue<Integer> q=new LinkedList<>();
-
-        plusminus(0,9,5,1,q);
+        String re="";
+        plusminus(9,5);
        //cow(a);
     }
 
